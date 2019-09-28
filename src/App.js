@@ -22,9 +22,9 @@ function App() {
         
             <Route exact path="/suscribers" component={ Suscribers } />
 
-            <Route exact path="/suscribers/:id" component={ SeeSuscriber } />
-
             <Route exact path="/suscribers/new" component={ NewSuscriber } />
+
+            <Route exact path="/suscribers/:id" component={ SeeSuscriber } />
 
             <Route exact path="/suscribers/edit/:id" component={ EditSuscriber } />
       
