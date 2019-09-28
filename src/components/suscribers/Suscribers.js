@@ -1,13 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Spinner from '../layout/Spinner';
+import PropTypes from 'prop-types';
 //redux
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 
-const Suscribers = (props) => {
+import Swal from 'sweetalert2';
 
-	if (!props.suscribers) { return <h2>Loading...</h2>}
+const Suscribers = ({suscribers, firestore}) => {
+
+   //Is visible if suscribers are loading
+	if (!suscribers) { return <Spinner/>}
+
+   const deleteSuscriber = id =>{
+   
+   //confirm sweet alert
+   Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+    }).then((result)=>{
+      if (result.value) {
+
+      //firestore delete method
+      firestore.delete({
+         collection: 'suscribers',
+         doc: id
+      })}
+    })
+
+   }
 
   return (
    	<div className="row">
@@ -32,7 +60,7 @@ const Suscribers = (props) => {
    			</thead>
 
    			<tbody>
-   				{props.suscribers.map(suscriber =>(
+   				{suscribers.map(suscriber =>(
    					<tr key={suscriber.id}>
    						<td>{suscriber.name} {suscriber.lastname}</td>
    						<td>{suscriber.career}</td>
@@ -43,6 +71,12 @@ const Suscribers = (props) => {
    							Mas informacion
 
    							</Link>
+                        
+                        <button className="btn btn-danger btn-block" 
+                        onClick={ () => deleteSuscriber(suscriber.id)}>
+                           Delete
+                        </button>
+
    						</td>
    					</tr>
    				))}
@@ -51,6 +85,11 @@ const Suscribers = (props) => {
 
    	</div>
   )
+}
+
+Suscribers.propTypes = {
+   firestore: PropTypes.object.isRequired,
+   suscribers: PropTypes.array
 }
 
 export default compose(
