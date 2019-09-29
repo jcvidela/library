@@ -29,10 +29,7 @@ class NewSuscriber extends Component {
 
 		//validation form
 		if (this.state.name.trim() === '' || this.state.lastname.trim() === '' ||
-			this.state.career.trim() === '' || this.state.alumncode.trim() === '' ) 
-		{	
-			return
-		}
+			this.state.career.trim() === '' || this.state.alumncode.trim() === '' ){ return }
 
 		//save on database
 		firestore.add({ collection: 'suscribers' }, newSuscriber)
@@ -47,7 +44,7 @@ class NewSuscriber extends Component {
                     <h2>New suscriber</h2>
 
                     <div className="col-md-6 mb-4">
-                    <Link to={'/suscribers'} className="btn btn-secondary">
+                    <Link to={'/suscribers'} className="btn btn-primary">
                     Back to suscribers</Link>
                     </div>
 

@@ -34,8 +34,7 @@ const Suscribers = ({suscribers, firestore}) => {
          doc: id
       })}
     })
-
-   }
+  }
 
   return (
    	<div className="row">
@@ -43,7 +42,7 @@ const Suscribers = ({suscribers, firestore}) => {
    		<div className="col-md-12 mb-4">
    			<Link
    				to="/suscribers/new"
-   				className="btn btn-primary"
+   				className="btn btn-success"
    			>Add new suscriber</Link>
    		</div>
 
@@ -68,7 +67,7 @@ const Suscribers = ({suscribers, firestore}) => {
    							<Link 
    							to={`/suscribers/${suscriber.id}`} 
    							className="btn btn-success btn-block">
-   							Mas informacion
+   							More data
 
    							</Link>
                         
