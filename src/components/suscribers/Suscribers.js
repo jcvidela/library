@@ -43,18 +43,15 @@ const Suscribers = ({suscribers, firestore}) => {
    			<Link
    				to="/suscribers/new"
    				className="btn btn-success"
-   			>Add new suscriber</Link>
+   			>Add  suscriber</Link>
    		</div>
 
-   		<div className="col-md-8">
-   			<h2>Suscribers</h2>
-   		</div>
    		<table className="table table-stripped mt-4">
    			<thead className="text-light bg-primary">
    				<tr>
    					<th>Name</th>
    					<th>Career</th>
-   					<th>Direction</th>
+   					<th>Actions</th>
    				</tr>
    			</thead>
 
@@ -66,12 +63,12 @@ const Suscribers = ({suscribers, firestore}) => {
    						<td>
    							<Link 
    							to={`/suscribers/${suscriber.id}`} 
-   							className="btn btn-success btn-block">
-   							More data
+   							className="btn btn-outline-secondary btn-block">
+   							More information
 
    							</Link>
                         
-                        <button className="btn btn-danger btn-block" 
+                        <button className="btn btn-outline-danger btn-block" 
                         onClick={ () => deleteSuscriber(suscriber.id)}>
                            Delete
                         </button>

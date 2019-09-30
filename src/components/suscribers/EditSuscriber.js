@@ -51,11 +51,10 @@ class EditSuscriber extends Component {
 		return (
 			<div className="row">
                 <div className="col-12">
-                    <h2>Edit suscriber</h2>
 
                     <div className="col-md-6 mb-4">
                     <Link to={`/suscribers/${this.props.suscriber.id}`}
-                     className="btn btn-secondary">Back to suscriber</Link>
+                     className="btn btn-secondary">Back</Link>
                     </div>
 
                     <div className="row justify-content-center">

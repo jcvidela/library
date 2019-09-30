@@ -32,7 +32,7 @@ class SeeBook extends Component {
 
     	//extract book
     	const { book } = this.props
-      console.log(book)
+      
 
     	if (!book) { return <Spinner/> }
 
@@ -50,7 +50,7 @@ class SeeBook extends Component {
         return (
             <div className="row">
             	<div className="col-md-6 mb-4">
-            		<Link to="/" className="btn btn-secondary">Back to list</Link>
+            		<Link to="/" className="btn btn-secondary">Back</Link>
             	</div>
 
             	<div className="col-md-6 mb-4">
@@ -63,7 +63,7 @@ class SeeBook extends Component {
             	<hr className="mx-5 w-100"/>
 
             	<div className="col-12">
-            		<h2 className="mb-4">{book.title}</h2>
+            		<h2 className="mb-4 underline">{book.title}</h2>
 
             		<p>
    						<span className="font-weight-bold">ISBN:  </span>
@@ -87,7 +87,7 @@ class SeeBook extends Component {
 
    					{btnLoan}
 
-            <h3 className="my-2">Personas que tienen una copia del libro</h3>
+            <h3 className="my-2 underline">Personas que tienen una copia del libro</h3>
               {
                 book.inuse.map(prestado =>(
                 <div key={prestado.alumncode} className="card my-2">
@@ -112,7 +112,7 @@ class SeeBook extends Component {
                   </div>
 
                   <div className="card-footer">
-                    <div type="button" className="btn btn-success font-weight-bold" onClick={() => this.backBook(prestado.alumncode)}>
+                    <div type="button" className="btn btn-success" onClick={() => this.backBook(prestado.alumncode)}>
                       Back book
                     </div>
                   </div>

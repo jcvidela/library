@@ -55,11 +55,11 @@ class EditBook extends Component {
         return (
             <div className="row">
                 <div className="col-12 mb-4">
-                    <h2>Edit book</h2>
 
                     <div className="col-md-6 mb-4">
-                    <Link to="/"
+                    <Link to={`/books/see/${book.id}`}
                      className="btn btn-secondary">Back</Link>
+                    
                     </div>
 
                     <div className="row justify-content-center">

@@ -37,8 +37,7 @@ class Login extends Component {
                     <div className="card mt-5">
                         <div className="card-body">
                             <h2 className="text-center py-4">
-                                <i className="fas fa-lock"></i> {''}
-                                Iniciar Sesión
+                                Login
                             </h2>
 
                             <form onSubmit={this.initSession}>
@@ -49,6 +48,7 @@ class Login extends Component {
                                         className="form-control"
                                         name="email"
                                         required
+                                        placeholder="Enter email"
                                         value={this.state.email}
                                         onChange={this.readData}
                                     />
@@ -61,6 +61,7 @@ class Login extends Component {
                                         className="form-control"
                                         name="password"
                                         required
+                                        placeholder="Enter password"
                                         value={this.state.password}
                                         onChange={this.readData}
                                     />
@@ -69,7 +70,7 @@ class Login extends Component {
                                 <input 
                                     type="submit"
                                     className="btn btn-success btn-block"
-                                    value="Inicar Sesión"
+                                    value="Submit"
                                 />
                             </form>
                         </div>

@@ -45,9 +45,8 @@ class NewBook extends Component {
         return (
             <div className="row">
             <div className="col-12">
-            <h2>New Book</h2>
             	<div className="col-md-6 mb-4">
-            		<Link to="/" className="btn btn-primary">Back to books</Link>
+            		<Link to="/" className="btn btn-secondary">Back</Link>
             	</div>
 
             	<div className="row justify-content-center">

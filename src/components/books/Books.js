@@ -65,9 +65,9 @@ const Books = ({books, firestore}) => {
 	    				<td>{book.stock - book.inuse.length}</td>
 	    				<td>
 	    					<Link to={`/books/see/${book.id}`}
-	    					className="btn btn-secondary btn-block">More data</Link>
+	    					className="btn btn-outline-secondary btn-block">More information</Link>
 
-	    					<button className="btn btn-danger btn-block"
+	    					<button className="btn btn-outline-danger btn-block"
                             onClick={() => deleteBook(book.id)}
                             >Delete</button>
 	    				</td>

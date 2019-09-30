@@ -16,7 +16,7 @@ const SeeSuscriber = (props) => {
    		<div className="col-md-6 mb-4">
 
    			<Link to={'/suscribers'} className="btn btn-secondary">
-   				Back to suscribers</Link>
+   				Back</Link>
    			</div>
 
    			<div className="col-md-6">
@@ -29,7 +29,7 @@ const SeeSuscriber = (props) => {
 
    			<div className="col-12">
 
-   				<h2 className="mb-4">
+   				<h2 className="mb-4 underline">
    					{props.suscriber.name} {props.suscriber.lastname}
    				</h2>
 
