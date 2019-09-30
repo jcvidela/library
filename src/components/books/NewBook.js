@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 //redux
-import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 
 class NewBook extends Component {

@@ -28,6 +28,13 @@ class EditBook extends Component {
 
 		//get firestore and history from props
 			const { book, firestore, history } = this.props;
+
+        //validation
+        if ( this.inputTitle.current.value.trim() === '' || this.inputISBN.current.value.trim() === '' ||
+             this.inputPublishingHouse.current.value.trim() === '' || this.inputStock.current.value.trim() === '' ) {
+            return
+        }
+        
 		
 
 		//save on database with firestore

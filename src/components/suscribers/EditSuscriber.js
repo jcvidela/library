@@ -28,6 +28,11 @@ class EditSuscriber extends Component {
 			//get firestore and history from props
 			const { suscriber, firestore, history } = this.props;
 
+            if ( this.inputName.current.value.trim() === '' || this.inputLastName.current.value.trim() === '' ||
+             this.inputCareer.current.value.trim() === '' || this.inputAlumnCode.current.value.trim() === '' ) {
+            return
+        }
+
 			//save on database with firestore
 			firestore.update({
 				collection: 'suscribers',

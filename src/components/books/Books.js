@@ -39,12 +39,9 @@ const Books = ({books, firestore}) => {
   return (
     <div className="row">
     	<div className="col-12 mb-4">
-    		<Link to="/books/new" className="btn btn-success">Add new book</Link>
+    		<Link to="/books/new" className="btn btn-success">Add book</Link>
     	</div>
 
-    	<div className="col-md-8">
-    		<h2>Books</h2>
-    	</div>
 
     	<table className="table table-stripped mt-4">
     		<thead className="text-light bg-primary">
@@ -53,7 +50,7 @@ const Books = ({books, firestore}) => {
     				<th>ISBN</th>
     				<th>Publishing house</th>
     				<th>Stock</th>
-    				<th>In use</th>
+    				<th>Avaible</th>
     				<th>Actions</th>
     			</tr>
     		</thead>
@@ -68,7 +65,7 @@ const Books = ({books, firestore}) => {
 	    				<td>{book.stock - book.inuse.length}</td>
 	    				<td>
 	    					<Link to={`/books/see/${book.id}`}
-	    					className="btn btn-success btn-block">More data</Link>
+	    					className="btn btn-secondary btn-block">More data</Link>
 
 	    					<button className="btn btn-danger btn-block"
                             onClick={() => deleteBook(book.id)}
