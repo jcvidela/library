@@ -8,12 +8,14 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase'
 
+import { findUser } from '../../actions/findeUserActions';
+
+
 class LoanBook extends Component {
 
 
 	state = {
 		search: '',
-		result: {},
 		noResult: false
 	}
 
@@ -25,7 +27,7 @@ class LoanBook extends Component {
 		const { search } = this.state;
 
 		//extract firestore
-		const { firestore } = this.props;
+		const { firestore, findUser } = this.props;
 
 		//made query
 		const collection = firestore.collection('suscribers');
@@ -34,15 +36,19 @@ class LoanBook extends Component {
 		//read results
 		query.then(result =>{
 			if (result.empty) {
+
+				findUser({})
 				this.setState({
-					noResult: true,
-					result: {}
+					noResult: true
 				})
 			}
 			else{
+
 				const data = result.docs[0];
+
+				findUser(data.data())
+				
 				this.setState({
-					result: data.data(),
 					noResult: false
 				})
 			}
@@ -50,25 +56,29 @@ class LoanBook extends Component {
 	}
 
 	solicitLoan = () =>{
-		const suscriber = this.state.result;
+		const { user } = this.props;
 
 		//fecha de alta del prestamo
-		suscriber.dateSolicited = new Date().toLocaleDateString();
+		user.dateSolicited = new Date().toLocaleDateString();
 
-		//get book
-		const bookUpdated = this.props.book;
+		//get a copy state and push new state
+		let inuse = [];
+        inuse = [...this.props.book.inuse, user];
 
-		//add suscriber to book
-		bookUpdated.inuse.push( suscriber );
+		const book = {...this.props.book};
 
-		//get firestore and history
-		const { firestore, history, book } = this.props;
+		delete book.inuse;
 
-		//save on db
+		book.inuse = inuse;
+
+		const { firestore, history } = this.props;
+
+
 		firestore.update({
-			collection: 'books',
-			doc: book.id
-		},bookUpdated).then(history.push('/'))
+            collection: 'books',
+            doc: book.id
+        }, book ).then(history.push('/'));
+		
 	}
 
 	//set alumncode in state
@@ -87,14 +97,14 @@ class LoanBook extends Component {
 		if (!book) { return <Spinner/> }
 
 		//extract detail suscriber
-		const { noResult, result } = this.state;
+		const { user } = this.props;
 
 		let detailAlumn, btnSolicit;
 
-		if (result.name) {
+		if (user.name) {
 
 			detailAlumn = <DetailSuscriber 
-				alumn={result}
+				alumn={user}
 			/>
 
 			btnSolicit = <button type="button" 
@@ -104,6 +114,14 @@ class LoanBook extends Component {
 		else{
 			detailAlumn = null;
 			btnSolicit = null;
+		}
+		const { noResult } = this.state;
+		let messageError = '';
+		if (noResult) {
+			messageError = <div className="alert alert-danger text-center">No hay resultados para el codigo ingresado</div>
+		}
+		else{
+			messageError = null;
 		}
 
 		return (
@@ -136,7 +154,7 @@ class LoanBook extends Component {
 
                     			<input
                     				type="submit"
-                    				value="find Alumn"
+                    				value="Submit"
                     				className="btn btn-success btn-block"
                     			/>
                     		</form>
@@ -144,6 +162,8 @@ class LoanBook extends Component {
                     	{/*muestra la ficha del alumno y el boton para solicitar el prestamo*/}
                     	{detailAlumn}
                     	{btnSolicit}
+
+                    	{messageError}
 
                     	</div>
                     </div>
@@ -165,7 +185,8 @@ export default compose(
 		doc: props.match.params.id
 	}
 ]),
-	connect(({ firestore: {ordered}}, props ) =>({
-		book: ordered.book && ordered.book[0]
-	}))
+	connect(({ firestore: {ordered}, user}, props ) =>({
+		book: ordered.book && ordered.book[0],
+		user: user
+	}), { findUser } )
 )(LoanBook)

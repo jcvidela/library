@@ -5,6 +5,9 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
+//custom reducers
+import findUserReducer from './reducers/findUserReducer';
+
 //firestore config
 const firebaseConfig = {
 
@@ -36,7 +39,8 @@ const createStoreWithFirebase = compose(
 //reducers
 const rootReducer = combineReducers({
 	firebase: firebaseReducer,
-	firestore: firestoreReducer
+	firestore: firestoreReducer,
+	user : findUserReducer
 });
 
 //initial state
