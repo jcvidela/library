@@ -31,13 +31,21 @@ class SeeBook extends Component {
     render() {
 
     	//extract book
-    	const { book } = this.props
-      
+    	const { book } = this.props;
+
+      console.log('Esto se imprime cada vez que el arreglo viene vacio, fixea el bug correctamente juancito...')
 
     	if (!book) { return <Spinner/> }
 
-    	//btn get book
     	let btnLoan;
+      
+      if (!book.inuse || book.inuse === 0 || book.inuse === '') {
+        return btnLoan = <Link to={`/books/Loan/${book.id}`}
+        className="btn btn-success my-3">Se el primero en pedir este libro</Link>
+      }
+      
+
+    	//btn get book
 
     	if (book.stock - book.inuse.length > 0) {
     		btnLoan = <Link to={`/books/Loan/${book.id}`}
@@ -116,10 +124,8 @@ class SeeBook extends Component {
                       Back book
                     </div>
                   </div>
-
                 </div>
-            ))
-                
+            ))   
               }
 
             	</div>
