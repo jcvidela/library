@@ -1,4 +1,10 @@
-Para correr el proyecto localmente, ir al directorio del proyecto por la consola e instalra las sig. dependencias
-    npm install --save firebase react-redux@5 react-redux-firebase@2 redux redux-firestore react-router-dom
+Instalar packages :
+```
+npm install 
+```
 
-Usuario de prueba: juan@jazmin.com - 123456
+Usuario para probar:
+```
+Usuario: juan@jazmin
+Contra: 123456
+```
