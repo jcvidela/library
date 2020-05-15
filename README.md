@@ -3,7 +3,7 @@ Instalar packages :
 npm install 
 ```
 
-Usuario para probar:
+Testing:
 ```
 Usuario: juan@jazmin
 Contra: 123456
